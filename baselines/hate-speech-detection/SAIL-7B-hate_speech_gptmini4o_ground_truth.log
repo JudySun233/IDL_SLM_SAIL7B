@@ -1,0 +1,89 @@
+🔹 Suspicious Info: Find the most suspicious part of the statement:
+
+Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+
+Suspicious Part: "negrogreek homo"
+🔹 Generated Fact: Given the statement:
+
+Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+
+The most suspicious part is: Find the most suspicious part of the statement:
+
+Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+
+Suspicious Part: "negrogreek homo"
+
+Provide a relevant social or scientific fact to verify it:
+Fact: "NegroGreek" is not a common term and may be perceived as offensive or derogatory by some individuals, as it
+🔹 Final Answer: Claim: Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+The claim mentions that Find the most suspicious part of the statement:
+
+Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+
+Suspicious Part: "negrogreek homo".
+Fact: Given the statement:
+
+Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+
+The most suspicious part is: Find the most suspicious part of the statement:
+
+Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+
+Suspicious Part: "negrogreek homo"
+
+Provide a relevant social or scientific fact to verify it:
+Fact: "NegroGreek" is not a common term and may be perceived as offensive or derogatory by some individuals, as it
+Question: Is it fair to say that?
+Answer: No, it is not
+
+Claim: Hi i need some information to understand the meaning of the negrogreek homo and the race-mixer tag of the HELLENIC THREAD .
+Ground Truth (Dataset Label): UNFAIR
+SAIL-7B Prediction: UNFAIR
+--------------------------------------------------
+GPT-4o output: It sounds like you're referencing a point or idea that you've come across in a YouTube video and feel it warrants further discussion. If you'd like to share more details about the content or the specific point you're referring to, I can help you evaluate whether it's
+
+🔹 Suspicious Info: Find the most suspicious part of the statement:
+
+I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+
+Suspicious Part: "I caught this on youtube"
+🔹 Generated Fact: Given the statement:
+
+I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+
+The most suspicious part is: Find the most suspicious part of the statement:
+
+I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+
+Suspicious Part: "I caught this on youtube"
+
+Provide a relevant social or scientific fact to verify it:
+Fact: Youtube is the second most visited website globally, next to Google, with millions of videos being uploaded every day.
+🔹 Final Answer: Claim: I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+The claim mentions that Find the most suspicious part of the statement:
+
+I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+
+Suspicious Part: "I caught this on youtube".
+Fact: Given the statement:
+
+I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+
+The most suspicious part is: Find the most suspicious part of the statement:
+
+I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+
+Suspicious Part: "I caught this on youtube"
+
+Provide a relevant social or scientific fact to verify it:
+Fact: Youtube is the second most visited website globally, next to Google, with millions of videos being uploaded every day.
+Question: Is it fair to say that?
+Answer: Yes, it is fair
+
+Claim: I caught this on youtube , I 'm sure someone has posted this at some point on here but it deserves reiteration .
+Ground Truth (Dataset Label): UNFAIR
+SAIL-7B Prediction: FAIR
+--------------------------------------------------
+
+🔹 SAIL-7B Accuracy vs GPT-4o-mini Ground Truth: 0.7677824267782427
+🔹 SAIL-7B F1 Score vs GPT-4o-mini Ground Truth: 0.5895218127944669
