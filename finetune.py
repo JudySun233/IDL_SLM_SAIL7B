@@ -41,7 +41,7 @@ IGNORE_TOKEN_ID = LabelSmoother.ignore_index
 @dataclass
 class ModelArguments:
     model_name_or_path: Optional[str] = field(
-        default="meta-llama/Llama-2-7b-hf",
+        default="luohy/SAIL-7b",
         metadata={"help": "Path to pretrained model or model identifier"}
     )
 
@@ -203,6 +203,9 @@ def train():
                name=training_args.run_name or None)
 
     # Model & tokenizer
+   # Model & tokenizer (now pointing at luohy/SAIL‑7b with custom code)
+    TRUST = {"trust_remote_code": True}
+
     if lora_args.qlora:
         bnb_conf = BitsAndBytesConfig(
             load_in_4bit=True,
@@ -215,6 +218,7 @@ def train():
             quantization_config=bnb_conf,
             device_map="auto",
             cache_dir=training_args.cache_dir,
+            **TRUST
         )
         model = prepare_model_for_kbit_training(model)
     else:
@@ -223,6 +227,7 @@ def train():
             device_map="auto",
             torch_dtype=torch.float16,
             cache_dir=training_args.cache_dir,
+            **TRUST
         )
     model.config.use_cache = False
 
@@ -231,8 +236,11 @@ def train():
         cache_dir=training_args.cache_dir,
         padding_side="right",
         use_fast=False,
+        **TRUST
     )
     tokenizer.pad_token = tokenizer.eos_token
+
+    
 
     # LoRA wrap
     lora_cfg = LoraConfig(
