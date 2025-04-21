@@ -1,5 +1,5 @@
 wandb login
-accelerate launch train_lora_qlora.py \
+accelerate launch finetune.py \
   --data_path datasets/SAIL_train_deberta_entailment.json \
   --output_dir ./llama2-lora-entail \
   --lora_r 16 \
