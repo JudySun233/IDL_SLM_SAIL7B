@@ -199,7 +199,7 @@ def train():
     set_seed(42)
 
     # init wandb
-    wandb.init(project=training_args.project_name or None,
+    wandb.init(project="llama2-lora-entail",
                name=training_args.run_name or None)
 
     # Model & tokenizer
