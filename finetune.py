@@ -31,7 +31,7 @@ from transformers import (
     set_seed
 )
 from transformers.trainer_pt_utils import LabelSmoother
-from fastchat.conversation import get_default_conv_template, SeparatorStyle
+from fastchat.conversation import get_conv_template, SeparatorStyle
 
 import wandb
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
