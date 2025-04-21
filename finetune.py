@@ -190,17 +190,17 @@ def make_data_module(args, tokenizer):
 
 def train():
     parser = transformers.HfArgumentParser(
-        (ModelArguments, DataArguments, LoraArguments, WandbArguments, TrainingArguments)
+        (ModelArguments, DataArguments, LoraArguments,TrainingArguments)
     )
-    model_args, data_args, lora_args, wandb_args, training_args = \
+    model_args, data_args, lora_args, training_args = \
         parser.parse_args_into_dataclasses()
 
     # seed
     set_seed(42)
 
     # init wandb
-    wandb.init(project=wandb_args.project_name or None,
-               name=wandb_args.run_name or None)
+    wandb.init(project=training_args.project_name or None,
+               name=training_args.run_name or None)
 
     # Model & tokenizer
     if lora_args.qlora:
