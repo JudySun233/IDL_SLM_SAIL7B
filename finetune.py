@@ -124,7 +124,7 @@ def preprocess(sources, tokenizer: transformers.PreTrainedTokenizer) -> Dict[str
         return_tensors="pt",
         padding="max_length",
         truncation=True,
-        max_length=tokenizer.model_max_length,
+        max_length=1600,
     )
     input_ids = encoded.input_ids
     attention_mask = encoded.attention_mask
