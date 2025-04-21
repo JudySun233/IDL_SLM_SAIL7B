@@ -106,7 +106,7 @@ def rank0_print(*args):
 
 
 def preprocess(sources, tokenizer: transformers.PreTrainedTokenizer) -> Dict[str, torch.Tensor]:
-    conv = get_default_conv_template("dolly-v2").copy()
+    conv = get_conv_template("dolly-v2").copy()
     roles = {"human": conv.roles[0], "gpt": conv.roles[1]}
 
     prompts = []
