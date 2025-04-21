@@ -5,7 +5,6 @@ accelerate launch finetune.py \
   --lora_r 16 \
   --lora_alpha 32 \
   --lora_dropout 0.1 \
-  --target_modules '["q_proj","v_proj"]' \
   --qlora \
   --num_train_epochs 3 \
   --per_device_train_batch_size 2 \
@@ -16,5 +15,4 @@ accelerate launch finetune.py \
   --lr_scheduler_type cosine \
   --save_steps 400 \
   --save_total_limit 10 \
-  --model_max_length 1600 \
-  # --lazy_preprocess        # only if you actually want lazy mode
+  --model_max_length 1600
