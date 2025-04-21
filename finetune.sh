@@ -5,7 +5,7 @@ accelerate launch finetune.py \
   --lora_r 16 \
   --lora_alpha 32 \
   --lora_dropout 0.1 \
-  --target_modules q_proj,v_proj \
+  --target_modules '["q_proj","v_proj"]' \
   --qlora \
   --num_train_epochs 3 \
   --per_device_train_batch_size 2 \
