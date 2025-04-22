@@ -1,0 +1,9 @@
+huggingface_hub
+git+https://github.com/lm-sys/FastChat.git@main
+transformers
+datasets
+accelerate
+bitsandbytes
+peft
+wandb
+sentencepiece
