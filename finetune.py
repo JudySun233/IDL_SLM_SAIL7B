@@ -28,7 +28,8 @@ from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
     BitsAndBytesConfig,
-    set_seed
+    set_seed,
+    DataCollatorForLanguageModeling
 )
 from transformers.trainer_pt_utils import LabelSmoother
 from fastchat.conversation import get_conv_template, SeparatorStyle
@@ -106,6 +107,7 @@ def rank0_print(*args):
 
 
 def preprocess(sources, tokenizer: transformers.PreTrainedTokenizer) -> Dict[str, torch.Tensor]:
+    # Build your prompts exactly as before...
     conv = get_conv_template("dolly_v2").copy()
     roles = {"human": conv.roles[0], "gpt": conv.roles[1]}
 
@@ -114,44 +116,27 @@ def preprocess(sources, tokenizer: transformers.PreTrainedTokenizer) -> Dict[str
         if roles[source[0]["from"]] != conv.roles[0]:
             source = source[1:]
         conv.messages = []
-        for j, sentence in enumerate(source):
+        for sentence in source:
             role = roles[sentence["from"]]
             conv.append_message(role, sentence["value"])
         prompts.append(conv.get_prompt())
 
+    # Tokenize, pad/truncate to max_length
     encoded = tokenizer(
         prompts,
         return_tensors="pt",
         padding="max_length",
         truncation=True,
-        max_length=1600,
+        max_length=tokenizer.model_max_length,
     )
-    input_ids = encoded.input_ids
-    attention_mask = encoded.attention_mask
-    labels = input_ids.clone()
 
-    sep = conv.sep + conv.roles[1] + ": "
-    for i, prompt in enumerate(prompts):
-        total_len = (input_ids[i] != tokenizer.pad_token_id).sum().item()
-        rounds = prompt.split(conv.sep2)
-        cur_len = 1
-        labels[i, :cur_len] = IGNORE_TOKEN_ID
-        for rou in rounds:
-            if not rou:
-                break
-            parts = rou.split(sep)
-            if len(parts) != 2:
-                break
-            parts[0] += sep
-            round_len = len(tokenizer(rou).input_ids)
-            instr_len = len(tokenizer(parts[0]).input_ids) - 2
-            labels[i, cur_len:cur_len + instr_len] = IGNORE_TOKEN_ID
-            cur_len += round_len
-        if cur_len < total_len:
-            labels[i, cur_len:] = IGNORE_TOKEN_ID
+    return {
+        "input_ids":      encoded.input_ids,
+        "attention_mask": encoded.attention_mask,
+        # no labels here!
+    }
 
-    return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
-
+   
 class SupervisedDataset(Dataset):
     def __init__(self, raw_data, tokenizer, lazy=False):
         self.raw = raw_data
@@ -161,7 +146,7 @@ class SupervisedDataset(Dataset):
             data = preprocess([ex["conversations"] for ex in raw_data], tokenizer)
             self.input_ids = data["input_ids"]
             self.attn_mask = data["attention_mask"]
-            self.labels = data["labels"]
+
 
     def __len__(self):
         return len(self.raw)
@@ -169,11 +154,10 @@ class SupervisedDataset(Dataset):
     def __getitem__(self, idx):
         if self.lazy:
             data = preprocess([self.raw[idx]["conversations"]], self.tokenizer)
-            return {k: v[0] for k, v in data.items()}
+            return data
         return {
             "input_ids": self.input_ids[idx],
             "attention_mask": self.attn_mask[idx],
-            "labels": self.labels[idx],
         }
 
 def make_data_module(args, tokenizer):
@@ -202,8 +186,7 @@ def train():
     wandb.init(project="llama2-lora-entail",
                name=training_args.run_name or None)
 
-    # Model & tokenizer
-   # Model & tokenizer (now pointing at luohy/SAIL‑7b with custom code)
+
     TRUST = {"trust_remote_code": True}
 
     if lora_args.qlora:
@@ -240,6 +223,13 @@ def train():
     )
     tokenizer.pad_token = tokenizer.eos_token
 
+    data_collator = DataCollatorForLanguageModeling(
+        tokenizer,
+        mlm=False,               # causal LM (not masked LM)
+        pad_to_multiple_of=None,
+        return_tensors="pt",
+    )
+
     
 
     # LoRA wrap
@@ -261,6 +251,7 @@ def train():
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
+        data_collator=data_collator
     )
 
     trainer.train()
