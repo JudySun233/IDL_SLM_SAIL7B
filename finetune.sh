@@ -5,8 +5,8 @@ accelerate launch \
   --mixed_precision bf16 \
   --deepspeed_config_file ds_config.json \
   finetune.py \
-    --data_path               datasets/SAIL_train_deberta_entailment.json \
-    --run_name                "test_1" \
+    --data_path               datasets/SAIL_train.json \
+    --run_name                "test_4" \
     --output_dir              ./llama2-lora-entail \
     --lora_r                  16 \
     --lora_alpha              32 \
