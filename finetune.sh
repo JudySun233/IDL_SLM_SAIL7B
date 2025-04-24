@@ -1,13 +1,13 @@
 # re‑login wandb if you need to
 wandb login
-
+!mkdir -p /content/drive/MyDrive/IDL_SLM_SAIL7B/outputs_2
 accelerate launch \
   --mixed_precision bf16 \
   --deepspeed_config_file ds_config.json \
   finetune.py \
     --data_path               datasets/SAIL_train.json \
     --run_name                "test_4" \
-    --output_dir              ./llama2-lora-entail \
+    --output_dir              /content/drive/MyDrive/IDL_SLM_SAIL7B/outputs_2\
     --lora_r                  16 \
     --lora_alpha              32 \
     --lora_dropout            0.1 \
