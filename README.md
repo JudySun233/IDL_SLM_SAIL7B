@@ -36,6 +36,11 @@ The experiments follow a zero-shot inference approach:
 4. Inference pipeline using GPT-4o-mini for ground truth generation
 5. Performance evaluation using accuracy and F1 score metrics
 
+## Models:
+1. Finetuned SAIL7B model with deberta dataset: https://drive.google.com/drive/folders/1XIuVksnJXRNewCcNNx8pIe1dv82Kq2-M?usp=sharing
+2. Finetuned SAIL7B model with mistral dataset: https://drive.google.com/drive/folders/1hQJ78oXWjmPPXkKaUR7c1ygD8X2mMQVt?usp=sharing
+   
+
 ## Results
 
 Overall, SAIL-7B outperforms LLaMA-7B across both tasks, showing stronger fact-checking capabilities. The Climate-Fever results align with the original SAIL paper, while the HSD results show some discrepancies from the reported metrics.
