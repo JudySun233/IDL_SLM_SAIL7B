@@ -39,16 +39,21 @@ The experiments follow a zero-shot inference approach:
 ## Models:
 1. Finetuned SAIL7B model with deberta dataset: https://drive.google.com/drive/folders/1XIuVksnJXRNewCcNNx8pIe1dv82Kq2-M?usp=sharing
 2. Finetuned SAIL7B model with mistral dataset: https://drive.google.com/drive/folders/1hQJ78oXWjmPPXkKaUR7c1ygD8X2mMQVt?usp=sharing
+3. Distilled Qwen 0.5B: https://drive.google.com/drive/folders/1oLty-I3PwMEYWOf6P5IhF-5AIAZR__2p?usp=drive_link 
+4. Distilled Qwen 1.5B: https://drive.google.com/drive/folders/1Gy4ev2wYwVuLOvLrbiEXlYAVSD984Dpn?usp=drive_link
 
 
-Follow the steps below to install dependencies, configure Weights & Biases, and launch the fine-tuning scripts for both models:
+Follow the steps below to install dependencies, configure Weights & Biases, and launch the fine-tuning scripts for both the finetuning models:
 ```bash
 pip install -r requirements.txt
 export WANDB_API_KEY=<YOUR_API_KEY>
 bash finetune.sh
 ```
 
-
+Follow the steps below to launch distillation process for both the Qwen0.5B and Qwen1.5B models:
+1. Fork the project repo
+2. Use the `kd_training.ipynb` file and setup the github repo credentials in the first notebook
+3. Run either of the next two cells for logits based distillation or fine-tuning based distillation
 
 
    
