@@ -39,6 +39,18 @@ The experiments follow a zero-shot inference approach:
 ## Models:
 1. Finetuned SAIL7B model with deberta dataset: https://drive.google.com/drive/folders/1XIuVksnJXRNewCcNNx8pIe1dv82Kq2-M?usp=sharing
 2. Finetuned SAIL7B model with mistral dataset: https://drive.google.com/drive/folders/1hQJ78oXWjmPPXkKaUR7c1ygD8X2mMQVt?usp=sharing
+
+
+Follow the steps below to install dependencies, configure Weights & Biases, and launch the fine-tuning scripts for both models:
+```bash
+pip install -r requirements.txt
+export WANDB_API_KEY=<YOUR_API_KEY>
+bash finetune.sh
+```
+
+
+
+
    
 
 ## Results
